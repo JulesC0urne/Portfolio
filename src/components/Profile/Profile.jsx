@@ -22,7 +22,7 @@ const Profile = () => {
                 date: "Il y a 2 jours",
                 likes: 24,
                 comments: 8,
-                image: './posts/chess.png'
+                image: `${process.env.PUBLIC_URL}/posts/chess.png`
             },
             {
                 id: 2,
@@ -31,7 +31,7 @@ const Profile = () => {
                 date: "Il y a 1 semaine",
                 likes: 45,
                 comments: 16,
-                image: './posts/dog.jpg',
+                image: `${process.env.PUBLIC_URL}/posts/dog.jpg`
             },
             {
                 id: 3,
@@ -40,7 +40,7 @@ const Profile = () => {
                 date: "Il y a 3 semaines",
                 likes: 6,
                 comments: 4,
-                image: './posts/lac.jpg',
+                image: `${process.env.PUBLIC_URL}/posts/lac.jpg`
             }
         ],
         langages: [
@@ -51,7 +51,7 @@ const Profile = () => {
                 date: "Il y a 1 an",
                 likes: 27,
                 comments: 2,
-                image: './posts/toeic.png',
+                image: `${process.env.PUBLIC_URL}/posts/toeic.png`
             }
         ],
         travels: [
@@ -62,7 +62,7 @@ const Profile = () => {
                 date: "Il y a 1 an",
                 likes: 31,
                 comments: 36,
-                image: ['./posts/africa1.jpg', './posts/africa2.jpg', './posts/africa3.jpg', './posts/africa4.jpg'],
+                image: [`${process.env.PUBLIC_URL}/posts/africa1.jpg`, `${process.env.PUBLIC_URL}/posts/africa2.jpg`, `${process.env.PUBLIC_URL}/posts/africa3.jpg`, `${process.env.PUBLIC_URL}/posts/africa4.jpg`],
             },
             {
                 id: 2,
@@ -71,7 +71,7 @@ const Profile = () => {
                 date: "Il y a 1 an",
                 likes: 23,
                 comments: 9,
-                image: ['./posts/madagascar1.jpg', './posts/madagascar2.jpg', './posts/madagascar3.jpg', './posts/madagascar4.jpg'],
+                image: [`${process.env.PUBLIC_URL}/posts/madagascar1.jpg`, `${process.env.PUBLIC_URL}/posts/madagascar2.jpg`, `${process.env.PUBLIC_URL}/posts/madagascar3.jpg`, `${process.env.PUBLIC_URL}/posts/madagascar4.jpg`],
             }
         ]
     };
@@ -96,7 +96,7 @@ const Profile = () => {
                 <CardMedia
                     component="img"
                     height="200"
-                    image="./cover.jpg"
+                    image={`${process.env.PUBLIC_URL}/cover.jpg`}
                     alt="Cover"
                     className="h-80 object-cover"
                 />
@@ -119,7 +119,7 @@ const Profile = () => {
                     {/* Photo de profil */}
                     <div className="relative">
                         <img
-                            src="./profil.png"
+                            src={`${process.env.PUBLIC_URL}/profil.png`}
                             alt="Profile"
                             className="w-[120px] h-[120px] rounded-full border-4 border-white absolute -top-20 left-6 shadow-lg object-cover"
                         />

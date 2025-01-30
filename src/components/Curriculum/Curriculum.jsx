@@ -20,7 +20,7 @@ const Curriculum = () => {
                         boxShadow: 1
                     }}>
                         <iframe
-                            src="/cv.pdf"
+                            src={`${process.env.PUBLIC_URL}/cv.pdf`}
                             className="w-full h-full"
                             title="CV"
                             style={{ border: 'none' }}
