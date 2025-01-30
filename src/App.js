@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Switch } from 'react-router-dom';
 import LeftSideBar from './components/LeftSideBar/LeftSideBar';
 import Profile from './components/Profile/Profile';
 import RightSideBar from './components/RightSideBar/RightSideBar';
