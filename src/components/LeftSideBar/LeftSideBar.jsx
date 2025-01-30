@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom'; // Importation de useLocation
 import {
     LayoutDashboard,
     FileCode,
@@ -8,7 +9,6 @@ import {
     Paperclip,
     HelpCircle
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 const mainMenuItems = [
     {
@@ -45,6 +45,7 @@ const mainMenuItems = [
 
 const LeftSideBar = () => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     return (
         <aside className="fixed left-0 w-64 h-screen bg-white shadow-lg flex flex-col">
@@ -54,7 +55,7 @@ const LeftSideBar = () => {
                     <button
                         key={index}
                         onClick={() => navigate(item.path)}
-                        className={`w-full flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors duration-200 ${window.location.pathname === item.path ? 'bg-blue-50 text-blue-600' : ''
+                        className={`w-full flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors duration-200 ${location.pathname === item.path ? 'bg-blue-50 text-blue-600' : ''
                             }`}
                     >
                         <span>{item.icon}</span>
@@ -67,7 +68,7 @@ const LeftSideBar = () => {
             <div className="p-4 border-t">
                 <button
                     onClick={() => navigate('/about')}
-                    className={`w-full flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors duration-200 ${window.location.pathname === '/about' ? 'bg-blue-50 text-blue-600' : ''
+                    className={`w-full flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors duration-200 ${location.pathname === '/about' ? 'bg-blue-50 text-blue-600' : ''
                         }`}
                 >
                     <HelpCircle className="w-5 h-5" />

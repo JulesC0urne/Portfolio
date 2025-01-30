@@ -2,7 +2,7 @@
   "name": "my-social-network",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://JulesC0urne.github.io/Portfolio",
+  "homepage": "https://JulesC0urne.github.io/Portfolio/",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.14.0",
