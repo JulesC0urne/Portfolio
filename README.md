@@ -38,7 +38,7 @@ Informations sur l'aspect technique du projet.
 
 1. Clonez ce dépôt :
 ```
-git clone https://github.com/JulesC0urne/Portfolio.git
+git clone https://github.com/JulesC0urne/portfolio.git
 ```
 
 2. Accédez au dossier du projet :
@@ -61,7 +61,7 @@ Le portfolio sera accessible à l'adresse http://localhost:3000
 ## Déploiement
 
 Ce projet est déployé sur GitHub Pages. Vous pouvez le consulter ici :
-[Mon Portfolio](https://julesc0urne.github.io/Portfolio/profile)
+[Mon Portfolio](https://julesc0urne.github.io/portfolio/profile)
 
 ## Contact
 
