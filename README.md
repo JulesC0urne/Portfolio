@@ -1,56 +1,62 @@
-Mon Portfolio
-Ce projet est un portfolio personnel développé en utilisant React et hébergé sur GitHub Pages. Il présente mes informations professionnelles, mes projets, mon parcours éducatif et mes compétences.
+🎨 Mon Portfolio  
+Ce projet est un portfolio personnel développé en React et hébergé sur GitHub Pages. Il présente mes informations professionnelles, mes projets, mon parcours éducatif et mes compétences.  
 
-🚀 Technologies utilisées
-React.js : Pour le développement de l'interface utilisateur dynamique et réactive.
-React Router : Pour gérer la navigation entre les différentes sections du portfolio.
-Tailwind CSS : Pour le style et la mise en page rapide et responsive.
-GitHub Pages : Pour héberger le portfolio.
-Lucide React : Pour les icônes dans la navigation.
-Material UI : Pour des composants réutilisables et stylisés.
+🚀 Technologies utilisées  
+React.js : Développement de l'interface utilisateur dynamique et réactive.
+React Router : Gestion de la navigation entre les différentes sections du portfolio.
+Tailwind CSS : Mise en page rapide et responsive.
+GitHub Pages : Hébergement du portfolio.
+Lucide React : Icônes pour la navigation.
+Material UI : Composants réutilisables et stylisés.  
 
-📑 Sections du Portfolio
-Le portfolio est divisé en plusieurs sections accessibles via la barre de navigation à gauche :
+📑 Sections du Portfolio  
+Le portfolio est divisé en plusieurs sections accessibles via la barre de navigation :  
 
-Profil : Section avec des informations personnelles, une photo et une description.
-Expériences : Liste de mes expériences professionnelles, projets et collaborations.
-Éducation : Détails de mon parcours académique.
-Compétences : Compétences techniques et non techniques.
-Projets : Quelques projets réalisés avec des liens vers les repositories ou démos.
-CV : Mon CV en téléchargement direct ou consultable en ligne.
-About : Quelques points sur l'aspect technique et informatif du projet
+📌 Profil  
+Informations personnelles, photo et description.
 
-🔧 Installation
-Pour installer ce projet localement, suivez les étapes ci-dessous.
+🏢 Expériences  
+Liste des expériences professionnelles, projets et collaborations.
 
-Clonez ce dépôt :
+🎓 Éducation  
+Parcours académique détaillé.
 
-bash
-Copier
-Modifier
-git clone https://github.com/JulesC0urne/Portfolio.git
+🛠️ Compétences  
+Compétences techniques et non techniques.
 
-Accédez au dossier du projet :
+📂 Projets  
+Projets réalisés avec des liens vers les repositories ou démos.
 
-cd Portfolio
+📄 CV  
+Téléchargement ou consultation en ligne du CV.
 
-Installez les dépendances :
+ℹ️ À propos  
+Informations sur l’aspect technique et informatif du projet.
 
-npm install
+🔧 Installation  
+Pour installer ce projet localement, suivez ces étapes :
 
-Démarrez le serveur de développement :
+1️⃣ Clonez ce dépôt :  
+git clone https://github.com/JulesC0urne/Portfolio.git  
+  
+2️⃣ Accédez au dossier du projet :  
+cd Portfolio  
 
-npm start
+3️⃣ Installez les dépendances :  
+npm install  
 
-Ouvrez votre navigateur à l'adresse http://localhost:3000 pour voir le portfolio en action.
+4️⃣ Démarrez le serveur de développement :  
+npm start  
 
-🌐 Déploiement
-Ce projet est déployé sur GitHub Pages. Vous pouvez le consulter à l'URL suivante :
-https://julesc0urne.github.io/Portfolio/
+Le portfolio sera accessible à l'adresse http://localhost:3000.
 
-👨‍💻 À propos de moi
+🌐 Déploiement  
+Ce projet est déployé sur GitHub Pages. Vous pouvez le consulter ici :  
+[🔗 Mon Portfolio](https://github.com/JulesC0urne/Portfolio.git)  
+
+👨‍💻 À propos de moi  
 Je suis un développeur passionné par la création de solutions web élégantes et fonctionnelles.
 
-📬 Contact
-Si vous avez des questions, n'hésitez pas à me contacter sur :
-Email : jules@example.com
+📬 Contact  
+Si vous avez des questions, n'hésitez pas à me contacter :  
+📧 Email : jules@example.com

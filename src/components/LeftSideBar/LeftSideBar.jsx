@@ -71,7 +71,7 @@ const LeftSideBar = () => {
                         }`}
                 >
                     <HelpCircle className="w-5 h-5" />
-                    About
+                    A propos
                 </button>
             </div>
         </aside>
