@@ -44,7 +44,7 @@ const Projects = () => {
             title: "Portfolio",
             description: "Portfolio permettant de regrouper mes informations dans un site web intuitif.",
             technologies: ["React", "Tailwind CSS", "Material-UI"],
-            githubUrl: "https://github.com/JulesC0urne/Portfolio.git",
+            githubUrl: "https://github.com/JulesC0urne/portfolio.git",
         }
     ];
 

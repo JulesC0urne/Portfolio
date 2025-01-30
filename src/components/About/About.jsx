@@ -179,7 +179,7 @@ const About = () => {
                 {/* Footer */}
                 <Divider sx={{ my: 4 }} />
                 <Link
-                    href="https://github.com/JulesC0urne/Portfolio.git"
+                    href="https://github.com/JulesC0urne/portfolio.git"
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{
