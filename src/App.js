@@ -11,18 +11,18 @@ import About from './components/About/About';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/Portfolio">
       <div className="flex min-h-screen w-full">
         <LeftSideBar />
         <main className="flex-1 ml-64 mr-64">
           <Routes>
-            <Route path="/Portfolio/profile" element={<Profile />} />
-            <Route path="/Portfolio/experiences" element={<Experience />} />
-            <Route path="/Portfolio/education" element={<Education />} />
-            <Route path="/Portfolio/skills" element={<Skills />} />
-            <Route path="/Portfolio/projects" element={<Projects />} />
-            <Route path="/Portfolio/cv" element={<Curriculum />} />
-            <Route path="/Portfolio/about" element={<About />} />
+            <Route path={['/', '/profile']} element={<Profile />} />
+            <Route path="/experiences" element={<Experience />} />
+            <Route path="/education" element={<Education />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/cv" element={<Curriculum />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </main>
         <RightSideBar />

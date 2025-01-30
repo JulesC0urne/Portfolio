@@ -14,32 +14,32 @@ const mainMenuItems = [
     {
         title: "Profil",
         icon: <BadgeCheck className="w-5 h-5" />,
-        path: "/Portfolio/profile"  // Ajout du préfixe /Portfolio
+        path: "/"
     },
     {
         title: "Experiences",
         icon: <LayoutDashboard className="w-5 h-5" />,
-        path: "/Portfolio/experiences"  // Ajout du préfixe /Portfolio
+        path: "/experiences"
     },
     {
         title: "Education",
         icon: <GraduationCap className="w-5 h-5" />,
-        path: "/Portfolio/education"  // Ajout du préfixe /Portfolio
+        path: "/education"
     },
     {
         title: "Skills",
         icon: <FileCode className="w-5 h-5" />,
-        path: "/Portfolio/skills"  // Ajout du préfixe /Portfolio
+        path: "/skills"
     },
     {
         title: "Projets",
         icon: <Layers className="w-5 h-5" />,
-        path: "/Portfolio/projects"  // Ajout du préfixe /Portfolio
+        path: "/projects"
     },
     {
         title: "CV",
         icon: <Paperclip className="w-5 h-5" />,
-        path: "/Portfolio/cv"  // Ajout du préfixe /Portfolio
+        path: "/cv"
     }
 ];
 
