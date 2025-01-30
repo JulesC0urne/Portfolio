@@ -1,52 +1,68 @@
-Mon Portfolio 🎨
-Un portfolio personnel développé en React et hébergé sur GitHub Pages, présentant mes informations professionnelles, projets, parcours éducatif et compétences.
-Technologies utilisées 🚀
+# Mon Portfolio
 
-React.js - Développement de l'interface utilisateur dynamique et réactive
-React Router - Gestion de la navigation entre les différentes sections
-Tailwind CSS - Mise en page rapide et responsive
-GitHub Pages - Hébergement du portfolio
-Lucide React - Icônes pour la navigation
-Material UI - Composants réutilisables et stylisés
+Ce projet est un portfolio personnel développé en React et hébergé sur GitHub Pages. Il présente mes informations professionnelles, mes projets, mon parcours éducatif et mes compétences.
 
-Sections du Portfolio 📑
-Profil 📌
-Informations personnelles, photo et description professionnelle.
-Expériences 🏢
-Liste détaillée des expériences professionnelles, projets et collaborations.
-Éducation 🎓
-Parcours académique complet avec diplômes et certifications.
-Compétences 🛠️
-Vue d'ensemble des compétences techniques et non techniques.
-Projets 📂
-Galerie des projets réalisés avec liens vers les repositories et démos.
-CV 📄
-Accès direct au CV en ligne ou en téléchargement.
-À propos ℹ️
-Détails techniques et informatifs sur le projet.
-Installation 🔧
-Pour mettre en place ce projet localement, suivez ces étapes :
+## Technologies utilisées
 
-Clonez le dépôt :
+- React.js - Interface utilisateur dynamique et réactive
+- React Router - Navigation entre les sections
+- Tailwind CSS - Mise en page responsive
+- GitHub Pages - Hébergement
+- Lucide React - Icônes de navigation
+- Material UI - Composants réutilisables
 
-bashCopygit clone https://github.com/JulesC0urne/Portfolio.git
+## Sections du Portfolio
 
-Accédez au répertoire :
+### Profil
+Informations personnelles, photo et description.
 
-bashCopycd Portfolio
+### Expériences
+Liste des expériences professionnelles, projets et collaborations.
 
-Installez les dépendances :
+### Éducation
+Parcours académique détaillé.
 
-bashCopynpm install
+### Compétences
+Compétences techniques et non techniques.
 
-Lancez le serveur de développement :
+### Projets
+Projets réalisés avec liens vers les repositories ou démos.
 
-bashCopynpm start
+### CV
+Téléchargement ou consultation en ligne du CV.
+
+### À propos
+Informations sur l'aspect technique du projet.
+
+## Installation
+
+1. Clonez ce dépôt :
+```
+git clone https://github.com/JulesC0urne/Portfolio.git
+```
+
+2. Accédez au dossier du projet :
+```
+cd Portfolio
+```
+
+3. Installez les dépendances :
+```
+npm install
+```
+
+4. Démarrez le serveur de développement :
+```
+npm start
+```
+
 Le portfolio sera accessible à l'adresse http://localhost:3000
-Déploiement 🌐
-Ce projet est déployé sur GitHub Pages. Consultez-le ici : Mon Portfolio
-À propos de moi 👨‍💻
-Je suis un développeur passionné par la création de solutions web élégantes et fonctionnelles.
-Contact 📬
-N'hésitez pas à me contacter :
-📧 Email : jules@example.com
+
+## Déploiement
+
+Ce projet est déployé sur GitHub Pages. Vous pouvez le consulter ici :
+[Mon Portfolio](https://github.com/JulesC0urne/Portfolio.git)
+
+## Contact
+
+Email : jules@example.com
