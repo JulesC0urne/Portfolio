@@ -65,4 +65,4 @@ Ce projet est déployé sur GitHub Pages. Vous pouvez le consulter ici :
 
 ## Contact
 
-Email : jules@example.com
+Email : jules.courne@gmail.com
