@@ -61,7 +61,7 @@ Le portfolio sera accessible à l'adresse http://localhost:3000
 ## Déploiement
 
 Ce projet est déployé sur GitHub Pages. Vous pouvez le consulter ici :
-[Mon Portfolio](https://julesc0urne.github.io/Portfolio)
+[Mon Portfolio](https://julesc0urne.github.io/)
 
 ## Contact
 
