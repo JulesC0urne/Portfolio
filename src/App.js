@@ -16,7 +16,7 @@ function App() {
         <LeftSideBar />
         <main className="flex-1 ml-64 mr-64">
           <Routes>
-            <Route path="/" element={<Navigate to="/Portfolio/profile" />} />
+            <Route path="/" element={<Navigate to="/profile" />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/education" element={<Education />} />
