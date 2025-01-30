@@ -11,7 +11,7 @@ import About from './components/About/About';
 
 function App() {
   return (
-    <Router basename="/Portfolio">
+    <Router>
       <div className="flex min-h-screen w-full">
         <LeftSideBar />
         <main className="flex-1 ml-64 mr-64">
