@@ -14,34 +14,35 @@ const mainMenuItems = [
     {
         title: "Profil",
         icon: <BadgeCheck className="w-5 h-5" />,
-        path: "/profile"
+        path: "/Portfolio/profile"  // Ajout du préfixe /Portfolio
     },
     {
         title: "Experiences",
         icon: <LayoutDashboard className="w-5 h-5" />,
-        path: "/experiences"
+        path: "/Portfolio/experiences"  // Ajout du préfixe /Portfolio
     },
     {
         title: "Education",
         icon: <GraduationCap className="w-5 h-5" />,
-        path: "/education"
+        path: "/Portfolio/education"  // Ajout du préfixe /Portfolio
     },
     {
         title: "Skills",
         icon: <FileCode className="w-5 h-5" />,
-        path: "/skills"
+        path: "/Portfolio/skills"  // Ajout du préfixe /Portfolio
     },
     {
         title: "Projets",
         icon: <Layers className="w-5 h-5" />,
-        path: "/projects"
+        path: "/Portfolio/projects"  // Ajout du préfixe /Portfolio
     },
     {
         title: "CV",
         icon: <Paperclip className="w-5 h-5" />,
-        path: "/cv"
+        path: "/Portfolio/cv"  // Ajout du préfixe /Portfolio
     }
 ];
+
 
 const LeftSideBar = () => {
     const navigate = useNavigate();
