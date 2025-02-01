@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Search } from 'lucide-react';
 import { TextField, InputAdornment, List, ListItem, Typography, Box, Chip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '@mui/material/styles';
+
 
 const RightSideBar = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const navigate = useNavigate();
+    const theme = useTheme();
 
     const siteContent = [
         {
@@ -226,7 +229,8 @@ const RightSideBar = () => {
     };
 
     return (
-        <aside className="fixed right-0 w-64 h-screen bg-white shadow-lg overflow-y-auto">
+        <aside className="fixed right-0 w-64 h-screen bg-white shadow-lg overflow-y-auto"
+            style={{ backgroundColor: theme.palette.background.paper }}>
             <div className="p-4">
                 <TextField
                     type="search"
@@ -241,6 +245,12 @@ const RightSideBar = () => {
                                 <Search className="h-4 w-4 text-gray-400" />
                             </InputAdornment>
                         ),
+                    }}
+                    sx={{
+                        mb: 2, // Add margin-bottom using the theme's spacing
+                        '& .MuiOutlinedInput-root': {
+                            backgroundColor: 'background.default', // Use the theme background
+                        },
                     }}
                 />
 
@@ -258,7 +268,7 @@ const RightSideBar = () => {
                                     borderColor: 'grey.200',
                                     '&:hover': {
                                         backgroundColor: 'grey.100',
-                                    }
+                                    },
                                 }}
                             >
                                 <Box sx={{ width: '100%' }}>
@@ -271,7 +281,7 @@ const RightSideBar = () => {
                                             size="small"
                                             sx={{
                                                 backgroundColor: 'primary.light',
-                                                color: 'primary.main'
+                                                color: 'primary.main',
                                             }}
                                         />
                                     </Box>
@@ -281,8 +291,9 @@ const RightSideBar = () => {
                                             display: '-webkit-box',
                                             WebkitLineClamp: 2,
                                             WebkitBoxOrient: 'vertical',
-                                            overflow: 'hidden'
-                                        }}>
+                                            overflow: 'hidden',
+                                        }}
+                                    >
                                         {result.text}
                                     </Typography>
                                     <Typography
@@ -292,7 +303,7 @@ const RightSideBar = () => {
                                             display: '-webkit-box',
                                             WebkitLineClamp: 1,
                                             WebkitBoxOrient: 'vertical',
-                                            overflow: 'hidden'
+                                            overflow: 'hidden',
                                         }}
                                     >
                                         {result.preview}

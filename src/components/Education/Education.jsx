@@ -1,168 +1,186 @@
-import React from 'react';
-import { Card, CardContent, Typography, Box, Chip } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Card, CardContent, Typography, Box, Chip, CircularProgress } from '@mui/material';
 import { GraduationCap, Calendar, MapPin, Award } from 'lucide-react';
+import { getEducation, subject } from '../../data/EducationData';
 
 const Education = () => {
-    const education = [
-        {
-            degree: "Diplôme d'ingénieur en Informatique orientée Système d'Informations",
-            school: "Polytech Tours",
-            location: "Tours, France",
-            period: "09/2020 - 09/2023",
-            description: "Formation approfondie en informatique, avec un focus sur les systèmes d'informations et l'architecture logicielle.",
-            achievements: [
-                "Conception d'une application web pour la gestion de tournois régionaux et départementaux de BMX.",
-                "Conception d'une application web permettant de visualiser dynamiquement les données d'un sondage de qualité de vie au travail.",
-                "Projet de fin d'études : Réalisation d'une application permmettant l'analyse et l'aide à la décision pour le choix d'un outils coupant pour un usinage.",
-                "Stage de 3 mois au LIFAT : Conception d'une base de données et segmentation des données issue de 7200h de vidéo/audio pour faire du Fact-checking.",
-                "Stage de 6 mois chez SOLUTEC : Conception d'une application de gestion de notes de frais."
-            ],
-            skills: ["Java", "C#", "C++", "Python", "Javascript", "React", "Vue", "HTLM/CSS", "Architecture Logicielle", "Base de données", "Sécurité des systèmes"]
-        },
-        {
-            degree: "Classe préparatoire ATS scientifique",
-            school: "Lycée Blaise Pascal",
-            location: "Rouen, France",
-            period: "09/2019 - 06/2020",
-            description: "Classe préparatoire aux écoles d'ingénieurs, avec un focus sur les mathématiques et les sciences appliquées.",
-            achievements: [
-                "Réussite au concours d'entrée en école d'ingénieurs",
-            ],
-            skills: ["Mathématiques", "Physique", "Analyse", "Résolution de problèmes"]
-        },
-        {
-            degree: "BTS Topographe-géomètre",
-            school: "Lycée le Corbusier",
-            location: "Saint-Etienne-du-Rouvray, France",
-            period: "09/2017 - 06/2019",
-            description: "Formation technique sur les sciences géographiques, la cartographie et la gestion des systèmes d'information géographique.",
-            achievements: [
-                "Formation certifiée en logiciels de géomatique"
-            ],
-            skills: ["Géomatique", "Topographie", "Cartographie", "SIG"]
-        }
-    ];
+    const [education, setEducation] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchEducation = async () => {
+            try {
+                const fetchedEducation = getEducation();
+                setEducation(fetchedEducation);
+                setIsLoading(false);
+            } catch (error) {
+                console.error("Failed to fetch Education:", error);
+                setIsLoading(false);
+            }
+        };
+
+        fetchEducation();
+    }, []);
+
+    const InfoItem = ({ icon: Icon, text }) => (
+        <Box sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 0.5,
+            color: 'text.secondary',
+            '& svg': {
+                color: 'primary.main'
+            }
+        }}>
+            <Icon size={16} />
+            {text}
+        </Box>
+    );
 
     return (
         <Box sx={{
             flexGrow: 1,
             p: 3,
-            backgroundColor: 'grey.50',
-            minHeight: '100vh',
-            '& > *': { mb: 3 }
+            backgroundColor: 'background.default',
+            minHeight: '100vh'
         }}>
-            {/* En-tête */}
+            {/* Header Section */}
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" sx={{
-                    fontWeight: 'bold',
+                <Typography variant="h4" sx={(theme) => ({
+                    fontWeight: theme.typography.fontWeightBold,
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 1
-                }}>
+                    gap: 1,
+                    color: 'text.primary',
+                    '& svg': {
+                        color: 'primary.main'
+                    }
+                })}>
                     <GraduationCap size={32} />
                     Formation
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary" sx={{ mt: 1 }}>
-                    Mon parcours académique en développement et informatique
+                    Mon parcours académique en {subject}
                 </Typography>
             </Box>
 
-            {/* Parcours éducatif */}
-            <Box sx={{ '& > *': { mb: 3 } }}>
-                {education.map((edu, index) => (
-                    <Card key={index} sx={{
-                        transition: 'box-shadow 0.3s',
-                        '&:hover': { boxShadow: 6 }
-                    }}>
-                        <CardContent sx={{ p: 3 }}>
-                            <Box sx={{
-                                display: 'flex',
-                                flexDirection: { xs: 'column', md: 'row' },
-                                gap: 3
-                            }}>
-                                <Box sx={{ flex: 1 }}>
-                                    <Typography variant="h5" sx={{
-                                        fontWeight: 'bold',
-                                        color: 'primary.main'
-                                    }}>
-                                        {edu.degree}
-                                    </Typography>
+            {/* Education Cards */}
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                {isLoading ? (
+                    <Box display="flex" justifyContent="center" alignItems="center" height={200}>
+                        <CircularProgress />
+                    </Box>
+                ) : (
+                    education.map((edu, index) => (
+                        <Card key={index}>
+                            <CardContent sx={{ p: 3 }}>
+                                <Box sx={{
+                                    display: 'flex',
+                                    flexDirection: { xs: 'column', md: 'row' },
+                                    gap: 3
+                                }}>
+                                    {/* Left Column */}
+                                    <Box sx={{ flex: 1 }}>
+                                        <Typography variant="h6" sx={{
+                                            color: 'primary.main',
+                                            fontWeight: 'bold',
+                                            mb: 2
+                                        }}>
+                                            {edu.degree}
+                                        </Typography>
 
-                                    <Box sx={{
-                                        display: 'flex',
-                                        gap: 2,
-                                        mt: 1,
-                                        color: 'text.secondary'
-                                    }}>
-                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                            <Calendar size={16} />
-                                            {edu.period}
+                                        <Box sx={{
+                                            display: 'flex',
+                                            gap: 2,
+                                            mb: 2
+                                        }}>
+                                            <InfoItem icon={Calendar} text={edu.period} />
+                                            <InfoItem icon={MapPin} text={edu.location} />
                                         </Box>
-                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                            <MapPin size={16} />
-                                            {edu.location}
+
+                                        <Typography sx={{
+                                            fontWeight: 600,
+                                            color: 'text.primary',
+                                            mb: 2
+                                        }}>
+                                            {edu.school}
+                                        </Typography>
+
+                                        <Typography variant="body2" sx={{
+                                            color: 'text.secondary',
+                                            mb: 3
+                                        }}>
+                                            {edu.description}
+                                        </Typography>
+
+                                        {/* Achievements Section */}
+                                        <Box>
+                                            <Typography sx={{
+                                                fontWeight: 600,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: 1,
+                                                mb: 1,
+                                                '& svg': {
+                                                    color: 'primary.main'
+                                                }
+                                            }}>
+                                                <Award size={16} />
+                                                Réalisations clés
+                                            </Typography>
+                                            <Box component="ul" sx={{
+                                                listStyleType: 'disc',
+                                                pl: 2,
+                                                '& > li': {
+                                                    mb: 0.5,
+                                                    color: 'text.secondary'
+                                                }
+                                            }}>
+                                                {edu.achievements.map((achievement, i) => (
+                                                    <li key={i}>{achievement}</li>
+                                                ))}
+                                            </Box>
                                         </Box>
                                     </Box>
 
-                                    <Typography sx={{ fontWeight: 600, mt: 2 }}>
-                                        {edu.school}
-                                    </Typography>
-
-                                    <Typography sx={{ mt: 2, color: 'text.secondary' }}>
-                                        {edu.description}
-                                    </Typography>
-
-                                    {/* Réalisations */}
-                                    <Box sx={{ mt: 3 }}>
+                                    {/* Right Column - Skills */}
+                                    <Box sx={{
+                                        width: { xs: '100%', md: '30%' },
+                                        borderLeft: { md: 1 },
+                                        borderColor: { md: 'divider' },
+                                        pl: { md: 3 }
+                                    }}>
                                         <Typography sx={{
                                             fontWeight: 600,
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: 1,
-                                            mb: 1
+                                            mb: 2,
+                                            color: 'text.primary'
                                         }}>
-                                            <Award size={16} />
-                                            Réalisations clés
+                                            Compétences acquises
                                         </Typography>
-                                        <Box component="ul" sx={{
-                                            listStyleType: 'disc',
-                                            pl: 2,
-                                            '& > li': { mb: 0.5 }
+                                        <Box sx={{
+                                            display: 'flex',
+                                            flexWrap: 'wrap',
+                                            gap: 1
                                         }}>
-                                            {edu.achievements.map((achievement, i) => (
-                                                <li key={i}>{achievement}</li>
+                                            {edu.skills.map((skill, i) => (
+                                                <Chip
+                                                    key={i}
+                                                    label={skill}
+                                                    size="small"
+                                                    sx={{
+                                                        backgroundColor: 'primary.light',
+                                                        color: 'primary.dark',
+                                                        fontWeight: 500
+                                                    }}
+                                                />
                                             ))}
                                         </Box>
                                     </Box>
                                 </Box>
-
-                                {/* Compétences acquises */}
-                                <Box sx={{ width: { xs: '100%', md: '30%' } }}>
-                                    <Typography sx={{ fontWeight: 600, mb: 1 }}>
-                                        Compétences acquises
-                                    </Typography>
-                                    <Box sx={{
-                                        display: 'flex',
-                                        flexWrap: 'wrap',
-                                        gap: 1
-                                    }}>
-                                        {edu.skills.map((skill, i) => (
-                                            <Chip
-                                                key={i}
-                                                label={skill}
-                                                sx={{
-                                                    backgroundColor: 'primary.light',
-                                                    color: 'primary.main',
-                                                    '&:hover': { backgroundColor: 'primary.light' }
-                                                }}
-                                            />
-                                        ))}
-                                    </Box>
-                                </Box>
-                            </Box>
-                        </CardContent>
-                    </Card>
-                ))}
+                            </CardContent>
+                        </Card>
+                    ))
+                )}
             </Box>
         </Box>
     );

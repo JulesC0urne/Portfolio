@@ -3,14 +3,19 @@ import { Card, CardContent, Typography, Box } from '@mui/material';
 
 const Curriculum = () => {
     return (
-        <div className="flex-1 p-6 space-y-6 overflow-y-auto bg-gray-50">
+        <Box
+            className="flex-1 p-6 space-y-6 overflow-y-auto"
+            sx={{
+                backgroundColor: 'background.default', // Utilisation du thème pour la couleur de fond
+            }}
+        >
             <Card sx={{ boxShadow: 3 }}>
                 <CardContent sx={{ p: 6 }}>
-                    <div className="flex justify-between items-center mb-6">
+                    <Box className="flex justify-between items-center mb-6">
                         <Typography variant="h5" sx={{ fontWeight: 'bold', color: 'text.primary' }}>
                             Mon CV
                         </Typography>
-                    </div>
+                    </Box>
 
                     <Box sx={{
                         width: '100%',
@@ -28,7 +33,7 @@ const Curriculum = () => {
                     </Box>
                 </CardContent>
             </Card>
-        </div>
+        </Box>
     );
 };
 

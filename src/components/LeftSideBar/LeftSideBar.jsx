@@ -1,82 +1,88 @@
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; // Importation de useLocation
-import {
-    LayoutDashboard,
-    FileCode,
-    GraduationCap,
-    BadgeCheck,
-    Layers,
-    Paperclip,
-    HelpCircle
-} from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { HelpCircle } from 'lucide-react';
+import { Box, CircularProgress, Paper, Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { getItems } from '../../data/ItemsData';
 
-const mainMenuItems = [
-    {
-        title: "Profil",
-        icon: <BadgeCheck className="w-5 h-5" />,
-        path: "/"
-    },
-    {
-        title: "Experiences",
-        icon: <LayoutDashboard className="w-5 h-5" />,
-        path: "/experiences"
-    },
-    {
-        title: "Education",
-        icon: <GraduationCap className="w-5 h-5" />,
-        path: "/education"
-    },
-    {
-        title: "Skills",
-        icon: <FileCode className="w-5 h-5" />,
-        path: "/skills"
-    },
-    {
-        title: "Projets",
-        icon: <Layers className="w-5 h-5" />,
-        path: "/projects"
-    },
-    {
-        title: "CV",
-        icon: <Paperclip className="w-5 h-5" />,
-        path: "/cv"
-    }
-];
+const StyledSidebar = styled(Paper)(({ theme }) => ({
+    position: 'fixed',
+    left: 0,
+    width: '16rem',
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[3],
+}));
 
+const MenuButton = styled(Button)(({ theme }) => ({
+    justifyContent: 'flex-start',
+    padding: theme.spacing(1, 2),
+    textAlign: 'left',
+    width: '100%',
+    color: theme.palette.text.secondary,
+    '&:hover': {
+        backgroundColor: theme.palette.primary.megalight,
+        color: theme.palette.primary.main,
+    },
+    '&.active': {
+        backgroundColor: theme.palette.primary.megalight,
+        color: theme.palette.primary.main,
+    },
+}));
 
 const LeftSideBar = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const [items, setItems] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchItems = async () => {
+            try {
+                const fetchedItems = getItems();
+                setItems(fetchedItems);
+                setIsLoading(false);
+            } catch (error) {
+                console.error("Failed to fetch Items:", error);
+                setIsLoading(false);
+            }
+        };
+        fetchItems();
+    }, []);
 
     return (
-        <aside className="fixed left-0 w-64 h-screen bg-white shadow-lg flex flex-col">
-            {/* Menu principal */}
-            <div className="flex-1 p-4 space-y-4 overflow-y-auto">
-                {mainMenuItems.map((item, index) => (
-                    <button
-                        key={index}
-                        onClick={() => navigate(item.path)}
-                        className={`w-full flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors duration-200 ${location.pathname === item.path ? 'bg-blue-50 text-blue-600' : ''
-                            }`}
-                    >
-                        <span>{item.icon}</span>
-                        {item.title}
-                    </button>
-                ))}
-            </div>
+        <StyledSidebar elevation={3}>
+            <Box flexGrow={1} p={2} sx={{ overflowY: 'auto' }}>
+                {isLoading ? (
+                    <Box display="flex" justifyContent="center" alignItems="center" height={200}>
+                        <CircularProgress />
+                    </Box>
+                ) : (
+                    items.map((item, index) => (
+                        <MenuButton
+                            key={index}
+                            onClick={() => navigate(item.path)}
+                            className={location.pathname === item.path ? 'active' : ''}
+                            startIcon={item.icon}
+                        >
+                            {item.title}
+                        </MenuButton>
+                    ))
+                )}
+            </Box>
 
-            {/* Section About */}
-            <div className="p-4 border-t">
-                <button
+            <Box p={2} borderTop={1} borderColor="divider">
+                <MenuButton
                     onClick={() => navigate('/about')}
-                    className={`w-full flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors duration-200 ${location.pathname === '/about' ? 'bg-blue-50 text-blue-600' : ''
-                        }`}
+                    className={location.pathname === '/about' ? 'active' : ''}
+                    startIcon={<HelpCircle />}
                 >
-                    <HelpCircle className="w-5 h-5" />
                     A propos
-                </button>
-            </div>
-        </aside>
+                </MenuButton>
+            </Box>
+        </StyledSidebar>
     );
 };
 

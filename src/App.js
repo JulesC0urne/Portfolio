@@ -8,28 +8,33 @@ import Skills from './components/Skills/Skills';
 import Experience from './components/Experience/Experience';
 import Curriculum from './components/Curriculum/Curriculum';
 import About from './components/About/About';
+import ThemeProvider from './themes/ThemeProvider';
+import ThemeSelector from './components/ThemeSelector/ThemeSelector';
 
-function App() {
+const App = () => {
   return (
-    <Router basename="/portfolio">
-      <div className="flex min-h-screen w-full">
-        <LeftSideBar />
-        <main className="flex-1 ml-64 mr-64">
-          <Routes>
-            <Route path="/" element={<Profile />} />
-            <Route path="/experiences" element={<Experience />} />
-            <Route path="/education" element={<Education />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/cv" element={<Curriculum />} />
-            <Route path="/about" element={<About />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
-        <RightSideBar />
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router basename="/portfolio">
+        <div className="flex min-h-screen w-full">
+          <LeftSideBar />
+          <main className="flex-1 ml-64 mr-64">
+            <Routes>
+              <Route path="/" element={<Profile />} />
+              <Route path="/experiences" element={<Experience />} />
+              <Route path="/education" element={<Education />} />
+              <Route path="/skills" element={<Skills />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/cv" element={<Curriculum />} />
+              <Route path="/about" element={<About />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </main>
+          <RightSideBar />
+          <ThemeSelector />
+        </div>
+      </Router>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

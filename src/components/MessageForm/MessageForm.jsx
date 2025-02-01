@@ -1,6 +1,30 @@
+// MessageForm.jsx
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from "@mui/material";
+import {
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    TextField,
+    Button,
+    Typography,
+    Alert
+} from "@mui/material";
+import { styled } from '@mui/material/styles';
+
+const StyledDialog = styled(Dialog)(({ theme }) => ({
+    '& .MuiDialogTitle-root': {
+        backgroundColor: theme.palette.background.default,
+    },
+    '& .MuiDialogContent-root': {
+        padding: theme.spacing(3),
+    },
+}));
+
+const StyledTextField = styled(TextField)(({ theme }) => ({
+    marginBottom: theme.spacing(2),
+}));
 
 const MessageForm = ({ open, onClose }) => {
     const [senderName, setSenderName] = useState("");
@@ -45,54 +69,61 @@ const MessageForm = ({ open, onClose }) => {
     };
 
     return (
-        <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-            <DialogTitle className="font-bold text-gray-800">Envoyer un message</DialogTitle>
+        <StyledDialog open={open} onClose={onClose} fullWidth maxWidth="sm">
+            <DialogTitle>
+                <Typography variant="h6" component="div">
+                    Envoyer un message
+                </Typography>
+            </DialogTitle>
             <DialogContent>
                 {success ? (
-                    <p className="text-green-500 font-semibold">Message envoyé avec succès !</p>
+                    <Alert severity="success" sx={{ mt: 2 }}>
+                        Message envoyé avec succès !
+                    </Alert>
                 ) : (
                     <>
-                        <TextField
+                        <StyledTextField
                             label="Nom"
                             fullWidth
-                            margin="dense"
                             value={senderName}
                             onChange={(e) => setSenderName(e.target.value)}
                         />
-                        <TextField
+                        <StyledTextField
                             label="Votre Email"
                             fullWidth
-                            margin="dense"
                             value={senderEmail}
                             onChange={(e) => setSenderEmail(e.target.value)}
                         />
-                        <TextField
+                        <StyledTextField
                             label="Objet"
                             fullWidth
-                            margin="dense"
                             value={subject}
                             onChange={(e) => setSubject(e.target.value)}
                         />
-                        <TextField
+                        <StyledTextField
                             label="Message"
                             fullWidth
                             multiline
                             rows={4}
-                            margin="dense"
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                         />
                     </>
                 )}
             </DialogContent>
-            <DialogActions>
+            <DialogActions sx={{ padding: 2 }}>
                 {!success && (
                     <Button onClick={onClose} color="secondary" disabled={success}>
                         Annuler
                     </Button>
                 )}
                 {!success && (
-                    <Button onClick={handleSend} color="primary" variant="contained" disabled={loading}>
+                    <Button
+                        onClick={handleSend}
+                        color="primary"
+                        variant="contained"
+                        disabled={loading}
+                    >
                         {loading ? "Envoi..." : "Envoyer"}
                     </Button>
                 )}
@@ -102,9 +133,8 @@ const MessageForm = ({ open, onClose }) => {
                     </Button>
                 )}
             </DialogActions>
-        </Dialog>
+        </StyledDialog>
     );
 };
 
 export default MessageForm;
-

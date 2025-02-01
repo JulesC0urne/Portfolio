@@ -1,201 +1,224 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardMedia, Tabs, Tab, Box, Button, IconButton } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    Tabs,
+    Tab,
+    Box,
+    Button,
+    IconButton,
+    CircularProgress,
+    Typography
+} from '@mui/material';
 import { TabContext } from '@mui/lab';
-import { MapPin, Mail, Github, Linkedin, MessageCircle, Calendar } from 'lucide-react';
+import { MapPin, Mail, MessageCircle, Calendar } from 'lucide-react';
+import { styled } from '@mui/material/styles';
 import { TabPanels } from '../Post/Post';
 import MessageForm from '../MessageForm/MessageForm';
+import { getPosts } from '../../data/PostsData';
+import { profile, socialLinks } from '../../data/ProfileData';
+
+// Styled Components
+const ProfileContainer = styled('div')(({ theme }) => ({
+    flex: 1,
+    padding: theme.spacing(3),
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing(3),
+    overflowY: 'auto',
+    backgroundColor: theme.palette.grey[50]
+}));
+
+const ProfileCard = styled(Card)(({ theme }) => ({
+    position: 'relative',
+    boxShadow: theme.shadows[3]
+}));
+
+const CoverImage = styled(CardMedia)(({ theme }) => ({
+    height: 320,
+    objectFit: 'cover'
+}));
+
+const SocialIcons = styled('div')(({ theme }) => ({
+    position: 'absolute',
+    top: theme.spacing(2),
+    right: theme.spacing(2),
+    display: 'flex',
+    gap: theme.spacing(1)
+}));
+
+const ProfileImage = styled('img')(({ theme }) => ({
+    width: 120,
+    height: 120,
+    borderRadius: '50%',
+    border: `4px solid ${theme.palette.background.paper}`,
+    position: 'absolute',
+    top: -80,
+    left: theme.spacing(3),
+    boxShadow: theme.shadows[2],
+    objectFit: 'cover'
+}));
+
+const ProfileUsername = styled(Typography)(({ theme }) => ({
+    position: 'absolute',
+    top: -8,
+    left: 150,
+    color: theme.palette.primary.main,
+    fontWeight: 600,
+    fontSize: '0.875rem'
+}));
+
+const InfoItem = styled('div')(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    gap: theme.spacing(1),
+    '& svg': {
+        color: theme.palette.text.secondary,
+        width: 16,
+        height: 16
+    }
+}));
+
+const StyledTabs = styled(Tabs)(({ theme }) => ({
+    backgroundColor: theme.palette.background.paper,
+    '& .MuiTab-root': {
+        textTransform: 'none',
+        fontWeight: 600,
+        fontSize: '1rem',
+    },
+    '& .MuiTabs-flexContainer': {
+        justifyContent: 'space-around'
+    }
+}));
 
 const Profile = () => {
     const [selectedTab, setSelectedTab] = useState('interests');
     const [openPopup, setOpenPopup] = useState(false);
+    const [posts, setPosts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const handleChange = (event, newValue) => {
-        setSelectedTab(newValue);
-    };
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const fetchedPosts = getPosts();
+                setPosts(fetchedPosts);
+                setIsLoading(false);
+            } catch (error) {
+                console.error("Failed to fetch posts:", error);
+                setIsLoading(false);
+            }
+        };
 
-    const posts = {
-        interests: [
-            {
-                id: 1,
-                title: "Échec et mat... enfin presque !",
-                content: "Petite série de victoires aux échecs qui prouve que même un débutant peut avoir son quart d'heure de gloire. Mon niveau ? Disons que je suis quelque part entre 'débutant prometteur' et 'Le Fou est ma pièce préférée car il se déplace en diagonale comme moi après 3 cafés'. 🏆♟️",
-                date: "Il y a 2 jours",
-                likes: 24,
-                comments: 8,
-                image: `${process.env.PUBLIC_URL}/posts/chess.png`
-            },
-            {
-                id: 2,
-                title: "Mon Product Owner à 4 pattes",
-                content: "Nouveau membre dans l'équipe : un expert en méthodes Agiles qui maîtrise particulièrement le sprint (surtout quand c'est l'heure de la promenade) ! Son code de conduite ? Des câlins = des commits. 🐕💻",
-                date: "Il y a 1 semaine",
-                likes: 45,
-                comments: 16,
-                image: `${process.env.PUBLIC_URL}/posts/dog.jpg`
-            },
-            {
-                id: 3,
-                title: "Digital Detox au bord du lac",
-                content: "Quand on me demande où je debugge le mieux, je réponds : face à un lac ! Rien de tel qu'une pause nature pour rafraîchir ses idées et optimiser son code mental. La meilleure connexion ? Parfois c'est celle qu'on a avec soi-même. 🌊💭",
-                date: "Il y a 3 semaines",
-                likes: 6,
-                comments: 4,
-                image: `${process.env.PUBLIC_URL}/posts/lac.jpg`
-            }
-        ],
-        langages: [
-            {
-                id: 1,
-                title: "TOEIC : Mission Accomplished! 🎯",
-                content: "Après des mois de 'Hello World' répétitifs, je peux enfin dire que je parle couramment le Javascript ET l'anglais ! Un dev bilingue, c'est comme un code bien commenté : ça facilite la communication internationale. Une nouvelle compétence qui ouvre les portes des projets internationaux ! 🇬🇧✨",
-                date: "Il y a 1 an",
-                likes: 27,
-                comments: 2,
-                image: `${process.env.PUBLIC_URL}/posts/toeic.png`
-            }
-        ],
-        travels: [
-            {
-                id: 1,
-                title: "Découverte de l'Afrique du Sud 🦁",
-                content: "Un voyage inoubliable entre savane et modernité. Des moments magiques à observer les lions dans le Kruger Park, des couchers de soleil à couper le souffle sur Table Mountain, et des rencontres authentiques avec les communautés locales. De Cape Town à Johannesburg, chaque étape a été une nouvelle aventure riche en découvertes ! 🌍",
-                date: "Il y a 1 an",
-                likes: 31,
-                comments: 36,
-                image: [`${process.env.PUBLIC_URL}/posts/africa1.jpg`, `${process.env.PUBLIC_URL}/posts/africa2.jpg`, `${process.env.PUBLIC_URL}/posts/africa3.jpg`, `${process.env.PUBLIC_URL}/posts/africa4.jpg`],
-            },
-            {
-                id: 2,
-                title: "Madagascar, l'île aux trésors 🌴",
-                content: "Une immersion totale dans un paradis de biodiversité. Entre les allées de baobabs, les plages paradisiaques de Nosy Be, et les rencontres uniques avec les lémuriens dans leurs habitats naturels. Un voyage qui m'a fait découvrir une culture riche et des paysages à couper le souffle. Une expérience qui restera à jamais gravée dans ma mémoire ! 🌺",
-                date: "Il y a 1 an",
-                likes: 23,
-                comments: 9,
-                image: [`${process.env.PUBLIC_URL}/posts/madagascar1.jpg`, `${process.env.PUBLIC_URL}/posts/madagascar2.jpg`, `${process.env.PUBLIC_URL}/posts/madagascar3.jpg`, `${process.env.PUBLIC_URL}/posts/madagascar4.jpg`],
-            }
-        ]
-    };
-
-    const socialLinks = [
-        {
-            Icon: Github,
-            url: "https://github.com/JulesC0urne",
-            label: "Github"
-        },
-        {
-            Icon: Linkedin,
-            url: "https://www.linkedin.com/in/jules-courn%C3%A9-430a79230/",
-            label: "LinkedIn"
-        }
-    ];
+        fetchPosts();
+    }, []);
 
     return (
-        <div className="flex-1 p-6 space-y-6 overflow-y-auto bg-gray-50">
-            <Card className="relative shadow-lg">
-                {/* Image de couverture */}
-                <CardMedia
+        <ProfileContainer
+            sx={{
+                backgroundColor: 'background.default',
+            }}>
+            <ProfileCard>
+                <CoverImage
                     component="img"
-                    height="200"
                     image={`${process.env.PUBLIC_URL}/cover.jpg`}
                     alt="Cover"
-                    className="h-80 object-cover"
                 />
 
-                {/* Les icons réseaux sociaux */}
-                <div className="absolute top-4 right-4 flex space-x-2">
+                <SocialIcons>
                     {socialLinks.map(({ Icon, url, label }, index) => (
                         <IconButton
                             key={index}
-                            className="bg-white hover:bg-gray-100"
+                            sx={(theme) => ({
+                                backgroundColor: theme.palette.background.paper,
+                                '&:hover': {
+                                    backgroundColor: theme.palette.grey[100]
+                                }
+                            })}
                             onClick={() => window.open(url, '_blank')}
                             aria-label={label}
                         >
-                            <Icon className="w-5 h-5 text-blue-200" />
+                            <Icon sx={{ color: 'primary.light' }} />
                         </IconButton>
                     ))}
-                </div>
+                </SocialIcons>
 
-                <CardContent className="p-0">
-                    {/* Photo de profil */}
-                    <div className="relative">
-                        <img
+                <CardContent sx={{ p: 0 }}>
+                    <Box sx={{ position: 'relative' }}>
+                        <ProfileImage
                             src={`${process.env.PUBLIC_URL}/profil.png`}
                             alt="Profile"
-                            className="w-[120px] h-[120px] rounded-full border-4 border-white absolute -top-20 left-6 shadow-lg object-cover"
                         />
+                        <ProfileUsername>{profile.pseudo}</ProfileUsername>
+                    </Box>
 
-                        {/* Pseudo à droite de la photo de profil */}
-                        <span className="absolute -top-2 left-[150px] text-blue-400 font-semibold text-sm">
-                            @julescourne
-                        </span>
-                    </div>
+                    <Box sx={{ mt: 3, p: 3 }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                            <Box>
+                                <Typography variant="h4" sx={{ pl: 1, mt: 4 }}>
+                                    {profile.firstname} {profile.name}
+                                </Typography>
+                                <Typography variant="h6" color="primary" sx={{ mt: 0.5, pl: 1 }}>
+                                    {profile.position}
+                                </Typography>
+                            </Box>
 
-                    <div className="mt-6 p-6">
-                        {/* Nom + Poste */}
-                        <div className="flex justify-between items-start">
-                            <div>
-                                <h1 className="text-2xl font-bold pl-2">Jules Courné</h1>
-                                <p className="text-primary font-semibold text-md mt-1 pl-2"> Développeur Full-Stack</p>
-                            </div>
-
-                            <Button variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
-                                <MessageCircle className="w-4 h-4 mr-1" />
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                startIcon={<MessageCircle size={16} />}
+                                onClick={() => setOpenPopup(true)}
+                            >
                                 Message
                             </Button>
-                        </div>
+                        </Box>
 
-                        {/* Infos personnelles */}
-                        <div className="mt-4 text-gray-700 space-y-3 pl-2">
-                            <div className="flex items-center">
-                                <Calendar className="w-4 h-4 mr-2 text-gray-500" />
-                                <span>02 Juillet 1996</span>
-                            </div>
-                            <div className="flex items-center">
-                                <MapPin className="w-4 h-4 mr-2 text-gray-500" />
-                                <span>Mantes-la-Jolie, France</span>
-                            </div>
-                            <div className="flex items-center">
-                                <Mail className="w-4 h-4 mr-2 text-gray-500" />
-                                <span>jules.courne@gmail.com</span>
-                            </div>
-                        </div>
+                        <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 1.5, pl: 1 }}>
+                            <InfoItem>
+                                <Calendar />
+                                <Typography>{profile.birthdate}</Typography>
+                            </InfoItem>
+                            <InfoItem>
+                                <MapPin />
+                                <Typography>{profile.city}</Typography>
+                            </InfoItem>
+                            <InfoItem>
+                                <Mail />
+                                <Typography>{profile.mail}</Typography>
+                            </InfoItem>
+                        </Box>
 
-                        {/* Bio */}
-                        <p className="pl-2 pt-6 text-gray-700 leading-relaxed">
-                            Passionné par le développement web et les nouvelles technologies avec 1 an d'expérience.
-                            Spécialisé dans la création d'applications web performantes et scalables.
-                            Amateur de clean code et d'architecture logicielle.
-                        </p>
-                    </div>
+                        <Typography sx={{ pl: 1, pt: 3 }} color="text.secondary">
+                            {profile.description}
+                        </Typography>
+                    </Box>
                 </CardContent>
-            </Card>
+            </ProfileCard>
 
             <TabContext value={selectedTab}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <Tabs
+                    <StyledTabs
                         value={selectedTab}
-                        onChange={handleChange}
+                        onChange={(_, newValue) => setSelectedTab(newValue)}
                         aria-label="profile tabs"
-                        sx={{
-                            backgroundColor: 'white',
-                            '& .MuiTab-root': {
-                                textTransform: 'none',
-                                fontWeight: 'bold',
-                            },
-                            '& .MuiTabs-flexContainer': {
-                                justifyContent: 'space-around'
-                            }
-                        }}
                     >
                         <Tab label="Intérêts" value="interests" />
                         <Tab label="Langages" value="langages" />
                         <Tab label="Voyages" value="travels" />
-                    </Tabs>
+                    </StyledTabs>
                 </Box>
-                <TabPanels posts={posts} selectedTab={selectedTab} />
+
+                {isLoading ? (
+                    <Box display="flex" justifyContent="center" alignItems="center" height={200}>
+                        <CircularProgress />
+                    </Box>
+                ) : (
+                    <TabPanels posts={posts || []} selectedTab={selectedTab} />
+                )}
             </TabContext>
+
             <MessageForm open={openPopup} onClose={() => setOpenPopup(false)} />
-        </div>
+        </ProfileContainer>
     );
 };
 

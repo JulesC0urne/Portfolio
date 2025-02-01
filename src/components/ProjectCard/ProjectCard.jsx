@@ -38,8 +38,8 @@ const ScrollableText = styled(Box)(({ theme }) => ({
 }));
 
 const TechChip = styled(Chip)(({ theme }) => ({
-    backgroundColor: theme.palette.primary[50],
-    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.light,
     margin: theme.spacing(0.5),
     '& .MuiChip-label': {
         fontSize: '0.875rem',
@@ -49,7 +49,7 @@ const TechChip = styled(Chip)(({ theme }) => ({
 const ProjectCard = ({ project }) => {
     return (
         <StyledCard>
-            <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+            <CardContent sx={{ p: 2, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                 {/* Section du titre et bouton GitHub */}
                 <Box sx={{
                     display: 'flex',
